@@ -60,13 +60,13 @@ app.get("/api/notes", (req, res) => {
 app.post("/api/notes", (req, res) => {
   console.info(`${req.method} request received`);
 
-  const { noteTitle, noteText } = req.body;
+  const { title, text } = req.body;
 
   if (req.body) {
     const newNote = {
-      noteTitle,
-      noteText,
-      noteId: uuid(),
+      title,
+      text,
+      id: uuid(),
     };
 
     readAndAppend(newNote, "./db/notes.json");
