@@ -76,6 +76,25 @@ app.post("/api/notes", (req, res) => {
   }
 });
 
+//BONUS :D
+//find correct id to delete
+app.delete("/api/notes:id", (req, res) => {
+  console.info(`${req.method} request received`);
+  readFromFile("./db/notes.json").then((data) => JSON.parse(data));
+
+  const id = req.params.id;
+  const newId = 0;
+
+  for (var i = 0; i < data.length; i++) {
+    if (data[i].id === req.params.id) {
+      data.splice(i);
+    } else {
+      res.error("Error while deleting");
+    }
+  }
+});
+
+//connect to localhost
 app.listen(PORT, () =>
   console.log(`App listening at http://localhost:${PORT} 🚀`)
 );
